@@ -12,14 +12,14 @@ provider "aws" {
   
 }
 
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "tetra-s3-tfstate"
+# resource "aws_s3_bucket" "terraform_state" {
+#   bucket = "tetra-s3-tfstate"
 
-  lifecycle {
-    prevent_destroy = true
-  }
+#   lifecycle {
+#     prevent_destroy = true
+#   }
 
-  versioning {
-    enabled = true
-  }
-}
+#   versioning {
+#     enabled = true
+#   }
+# }

@@ -80,7 +80,6 @@ jobs:
       run: |
          rm -rf .terraform
          terraform init
-         terraform destroy -auto-approve
          terraform validate
          terraform plan -var-file terraform.tfvars -out plan.out
          terraform apply "plan.out" 
