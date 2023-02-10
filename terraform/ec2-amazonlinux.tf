@@ -1,4 +1,4 @@
-resource "aws_instance" "wordpress" {
+resource "aws_instance" "amazonlinux" {
     ami = "${var.ami}"
     instance_type = "${var.instance_type}"
     subnet_id = module.vpc.public_subnets[0]
