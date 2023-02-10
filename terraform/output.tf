@@ -1,4 +1,4 @@
-output "ec2_wp" {
-    description = "IP publica de la Instancia EC2 con Wordpress"
-    value = aws_instance.wordpress.public_ip
+output "ec2_ip" {
+    description = "IP publica de la Instancia EC2"
+    value = aws_instance.amazonlinux.public_ip
 }
