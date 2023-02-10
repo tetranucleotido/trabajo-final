@@ -83,7 +83,7 @@ jobs:
          terraform init
          terraform validate
          terraform plan -var-file terraform.tfvars -out plan.out
-         terraform apply "plan.out" -auto-approve -input=false
+         terraform apply "plan.out" 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
