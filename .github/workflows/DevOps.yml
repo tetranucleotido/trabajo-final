@@ -78,6 +78,7 @@ jobs:
     - name: Terraform Init
       run: |
          rm -rf .terraform
+         mkdir keys
          ssh-keygen -q -f keys/aws_terraform -C aws_terraform_ssh_key -N ''
          terraform init
          terraform validate
