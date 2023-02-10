@@ -35,6 +35,7 @@ jobs:
     - name: Terraform Init
       run: |
          rm -rf .terraform
+         terraform destroy -auto-approve
          terraform init
          terraform validate
          terraform plan -var-file terraform.tfvars -out plan.out
