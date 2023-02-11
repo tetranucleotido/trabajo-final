@@ -3,7 +3,3 @@ output "ec2_ip" {
     value = aws_instance.amazonlinux.public_ip
 }
 
-output "private_key" {
-  value     = "${tls_private_key.key.private_key_pem}"
-  sensitive = true
-}
