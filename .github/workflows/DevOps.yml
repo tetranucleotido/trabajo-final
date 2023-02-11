@@ -1,48 +1,38 @@
-name: 'DevOps'
+name: Terraform
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-     branches:
-      - develop
+    branches:
+      - terraform
 
 jobs:
-  terraform:
-    name: '🛳Deploy Terraform'
+  
+  deploy_to_dev:
     runs-on: ubuntu-latest
-    #if: ${{ github.ref == 'refs/heads/develop' }}
-    environment: develop
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    name: 🛳 Deploy Terraform to Develop
+    if: ${{ github.ref == 'refs/heads/terraform' }}
+    environment: dev
     defaults:
       run:
-        shell: bash
         working-directory: ./terraform
-
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.2.9
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
+    - name: Terraform 
       run: |
-         rm -rf .terraform
-         terraform destroy -auto-approve
-         terraform init
-         terraform validate
-         terraform plan -var-file terraform.tfvars -out plan.out
-         terraform apply "plan.out" 
+        rm -rf .terraform
+        terraform init
+        terraform validate
+        terraform plan -var-file terraform.tfvars -out plan.out
+        terraform apply "plan.out"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-        #ENV: dev 
+
