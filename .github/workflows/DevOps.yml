@@ -12,7 +12,7 @@ jobs:
   deploy_to_dev:
     runs-on: ubuntu-latest
     name: 🛳 Deploy Terraform to Develop
-    if: ${{ github.ref == 'refs/heads/terraform' }}
+    # if: ${{ github.ref == 'refs/heads/terraform' }}
     environment: dev
     defaults:
       run:
@@ -30,7 +30,7 @@ jobs:
         rm -rf .terraform
         terraform init
         terraform validate
-        terraform plan -var-file tfvars/$ENV.tfvars -out plan.out
+        terraform plan -var-file terraform.tfvars -out plan.out
         terraform apply "plan.out"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
