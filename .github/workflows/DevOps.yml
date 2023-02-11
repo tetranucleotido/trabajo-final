@@ -30,7 +30,7 @@ jobs:
         rm -rf .terraform
         terraform init
         terraform validate
-        terraform plan -var-file terraform.tfvars -out plan.out
+        terraform plan -out plan.out
         terraform apply "plan.out"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
