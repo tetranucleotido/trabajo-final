@@ -1,4 +1,4 @@
-resource "aws_security_group" "grupo_seguridad" {
+resource "aws_security_group" "publica" {
   name = "${var.app}-sg"
   vpc_id = module.vpc.vpc_id
 
@@ -37,5 +37,5 @@ resource "aws_security_group" "grupo_seguridad" {
       to_port = 0
       protocol = "-1"
     }
-    tags = local.common_tags
+
 }
