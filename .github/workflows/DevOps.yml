@@ -12,7 +12,7 @@ jobs:
   deploy_to_dev:
     runs-on: ubuntu-latest
     name: 🛳 Deploy Terraform to Develop
-    # if: ${{ github.ref == 'refs/heads/terraform' }}
+    #f: ${{ github.ref == 'refs/heads/terraform' }}
     environment: develop
     defaults:
       run:
@@ -38,3 +38,61 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         ENV: dev
+  deploy_to_test:
+    runs-on: ubuntu-latest
+    name: 🛳 Deploy Terraform to testing
+    #f: ${{ github.ref == 'refs/heads/terraform' }}
+    environment: develop
+    defaults:
+      run:
+        working-directory: ./terraform
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.2.9
+
+    - name: Terraform 
+      run: |
+        rm -rf .terraform
+        terraform init
+        terraform validate
+        terraform plan -var-file tfvars/$ENV.tfvars -out plan.out
+        terraform apply "plan.out"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        ENV: tst
+  deploy_to_produccion:
+    runs-on: ubuntu-latest
+    name: 🚀 Deploy Terraform to produccion
+    #f: ${{ github.ref == 'refs/heads/terraform' }}
+    environment: develop
+    defaults:
+      run:
+        working-directory: ./terraform
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.2.9
+
+    - name: Terraform 
+      run: |
+        rm -rf .terraform
+        terraform init
+        terraform validate
+        terraform plan -var-file tfvars/$ENV.tfvars -out plan.out
+        terraform apply "plan.out"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        ENV: prd
