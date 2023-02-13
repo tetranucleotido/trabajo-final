@@ -2,10 +2,8 @@ name: 'DevOps'
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-     branches:
-      - develop
+    branches:
+      - testeo
 
 jobs:
   
