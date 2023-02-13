@@ -1,4 +1,4 @@
-resource "aws_security_group" "publica" {
+resource "aws_security_group" "grupo_seguridad" {
   name = "${var.app}-sg"
   vpc_id = module.vpc.vpc_id
 
