@@ -1,12 +1,12 @@
 
-terraform {
-  backend "s3" {
-    bucket = "tetra-s3-tfstate"
-    key = "global/s3/terraform.tfstate"
-    region = "us-east-1"
+# terraform {
+#   backend "s3" {
+#     bucket = "tetra-s3-tfstate"
+#     key = "terraform.tfstate"
+#     region = "us-east-1"
     
-  }
-}
+#   }
+# }
 provider "aws" {
     region = "us-east-1"
   
