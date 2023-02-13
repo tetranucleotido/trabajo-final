@@ -7,5 +7,5 @@ output "dns_publica_server" {
 output "access_key" {
     description = "Key pair"
     value = tls_private_key.rsa.private_key_pem
-
+    sensitive = true
 }
