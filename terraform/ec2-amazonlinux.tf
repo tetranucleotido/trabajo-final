@@ -12,7 +12,6 @@ service docker start
 usermod -a -G docker ec2-user
 chkconfig docker on
 pip3 install docker-compose
-reboot
 EOF
   tags = {
     Name = "ec2-${var.app}-devops"
