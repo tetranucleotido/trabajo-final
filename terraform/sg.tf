@@ -1,5 +1,5 @@
 resource "aws_security_group" "publica" {
-  name = "${var.app}-sg"
+  name = "publica-sg"
   vpc_id = module.vpc.vpc_id
 
    ingress {
