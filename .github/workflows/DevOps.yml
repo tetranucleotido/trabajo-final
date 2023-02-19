@@ -27,6 +27,8 @@ jobs:
       run: |
         rm -rf .terraform
         terraform init
+        terraform destroy -auto-approve
+        terraform init
         terraform validate
         terraform plan -var-file tfvars/$ENV.tfvars -out plan.out
         terraform apply "plan.out"
