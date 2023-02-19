@@ -31,4 +31,4 @@ resource "local_file" "TF-key" {
   # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
   # etag = "${md5(file("path/to/file"))}"
   # etag = filemd5("tfkey")
-}
+# }
