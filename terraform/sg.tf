@@ -1,5 +1,5 @@
 resource "aws_security_group" "publica" {
-  name = "publica-sg"
+  name = "challenge-sg"
   vpc_id = module.vpc.vpc_id
 
    ingress {
