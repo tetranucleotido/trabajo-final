@@ -41,7 +41,7 @@ jobs:
   deploy_to_test:
     runs-on: ubuntu-latest
     name: 🛳 Deploy Terraform to testing
-    if: ${{ github.ref == 'refs/heads/testeo' }}
+    if: ${{ github.ref == 'refs/heads/test' }}
     environment: develop
     defaults:
       run:
@@ -70,7 +70,7 @@ jobs:
   deploy_to_produccion:
     runs-on: ubuntu-latest
     name: 🚀 Deploy Terraform to produccion
-    if: ${{ github.ref == 'refs/heads/testeo' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     environment: develop
     defaults:
       run:

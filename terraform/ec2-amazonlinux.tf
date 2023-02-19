@@ -14,6 +14,6 @@ chkconfig docker on
 pip3 install docker-compose
 EOF
   tags = {
-    Name = "ec2-${var.app}-devops"
+    Name = "${var.app}"
   }
 }
