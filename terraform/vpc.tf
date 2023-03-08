@@ -1,7 +1,7 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "vpc-${var.app}"
+  name = "vpc-challenge"
   cidr = "10.0.0.0/16"
 
   azs             = ["us-east-1a", "us-east-1b"]
@@ -14,5 +14,4 @@ module "vpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
 
-  tags = local.common_tags
 }
